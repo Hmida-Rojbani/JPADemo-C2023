@@ -26,6 +26,5 @@ public class ClientService {
         entity.setNom("John");
         entity.setCin(160515264);
         this.insertInDB(entity);
-        System.out.println("Done");
     }
 }
