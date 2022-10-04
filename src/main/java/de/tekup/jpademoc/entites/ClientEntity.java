@@ -1,6 +1,7 @@
 package de.tekup.jpademoc.entites;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "CLIENT")
@@ -15,6 +16,8 @@ public class ClientEntity {
     private String prenom;
     @Lob
     private String adresse;
+    @ManyToOne
+    private Company company;
 
     public int getId() {
         return id;

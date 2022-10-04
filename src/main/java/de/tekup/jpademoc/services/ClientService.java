@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClientService {
@@ -20,6 +22,19 @@ public class ClientService {
     public ClientEntity insertInDB(ClientEntity client){
         return clientRepository.save(client);
     }
+
+    public List<ClientEntity> getAllClients(){
+        return (List<ClientEntity>) clientRepository.findAll();
+    }
+
+    public ClientEntity getClientByID(int id){
+      Optional<ClientEntity> opt = clientRepository.findById(id);
+      ClientEntity client = opt.
+              orElseThrow(() -> new IllegalArgumentException("Client ID not found"));
+      //opt.isPresent()? opt.get():throw new new IllegalArgumentException("Client ID not found");
+        return client;
+    }
+
     @PostConstruct
     public void init(){
         ClientEntity entity = new ClientEntity();
