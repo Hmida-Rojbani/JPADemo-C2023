@@ -1,10 +1,17 @@
 package de.tekup.jpademoc.entites;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "CLIENT")
+@Data
+@JsonIdentityInfo(property = "id", generator = ObjectIdGenerators.IntSequenceGenerator.class)
 public class ClientEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,43 +26,7 @@ public class ClientEntity {
     @ManyToOne
     private Company company;
 
-    public int getId() {
-        return id;
-    }
+    @OneToMany(mappedBy = "client",fetch = FetchType.LAZY)
+    private List<Location> locations;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Integer getCin() {
-        return cin;
-    }
-
-    public void setCin(Integer cin) {
-        this.cin = cin;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
 }
