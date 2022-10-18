@@ -8,6 +8,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @Entity
 @Data
@@ -28,5 +29,11 @@ public class Location {
 
     @ManyToOne
     private VoitureEntity voiture;
+
+    @PostLoad
+    private void calculatePrix(){
+        long nbJour = ChronoUnit.DAYS.between(dateDebut,dateRetour.plusDays(1));
+        prix = nbJour*prixJour;
+    }
 
 }

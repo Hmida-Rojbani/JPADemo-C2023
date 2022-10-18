@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @AllArgsConstructor
 public class LocationCtrl {
     private LocationService locationService;
-    @PostMapping("/locations/add/client/{clientId}")
+    @PostMapping("/locations/add/client/{clientId}/voiture/{voitureId}")
     @ResponseBody
     public Location saveLocation(@RequestBody Location location,
-                     @PathVariable("clientId") int idClient){
-        return locationService.registerLocation(idClient,location);
+                     @PathVariable("clientId") int idClient
+                    , @PathVariable("voitureId") int idVoiture){
+        return locationService.registerLocation(idClient,idVoiture,location);
     }
 
 }
