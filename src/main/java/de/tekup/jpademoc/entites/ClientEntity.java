@@ -26,7 +26,7 @@ public class ClientEntity {
     @ManyToOne
     private Company company;
 
-    @OneToMany(mappedBy = "client",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "client")
     private List<Location> locations;
 
 }
