@@ -5,6 +5,7 @@ import de.tekup.jpademoc.repos.VoitureRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -17,12 +18,22 @@ public class VoitureService {
     }
 
     public List<VoitureEntity> getAllVoiture(){
-        return (List<VoitureEntity>) voitureRepository.findAll();
+        return (List<VoitureEntity>) voitureRepository
+                .findAll();
     }
 
     public VoitureEntity getVoitureById(int id){
         return voitureRepository.findById(id)
-                .orElseThrow(()->new IllegalArgumentException("Voiture Id Not Found"));
+        .orElseThrow(()->
+        new IllegalArgumentException("Voiture Id Not Found"));
     }
 
+    public List<VoitureEntity> getAllByModel(String model){
+        return voitureRepository.findByModel(model);
+    }
+
+    public List<VoitureEntity> getVoituresByDateInterval(LocalDate dateDebut
+            , LocalDate dateFin){
+        return voitureRepository.locateByInterval(dateDebut,dateFin);
+    }
 }
