@@ -26,4 +26,7 @@ public class Location {
     @ManyToOne
     private ClientEntity client;
 
+    @ManyToOne
+    private VoitureEntity voiture;
+
 }
