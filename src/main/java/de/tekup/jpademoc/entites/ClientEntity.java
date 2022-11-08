@@ -23,8 +23,6 @@ public class ClientEntity {
     private String prenom;
     @Lob
     private String adresse;
-    @ManyToOne
-    private Company company;
 
     @OneToMany(mappedBy = "client")
     private List<Location> locations;

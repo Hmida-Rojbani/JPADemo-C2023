@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 @Controller
 public class ViewCtrl {
 
-    @GetMapping({"/","/index"})
+    @GetMapping({"/","/welcome/index"})
     public String landingPage(Model model){
         String today = LocalDate.now()
                 .format(DateTimeFormatter.ofPattern("dd MMMM yyyy"));

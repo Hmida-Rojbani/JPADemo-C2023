@@ -38,8 +38,10 @@ public class ClientService {
     @PostConstruct
     public void init(){
         ClientEntity entity = new ClientEntity();
-        entity.setNom("John");
+        entity.setNom("Doe");
         entity.setCin(160515264);
+        entity.setPrenom("John");
+        entity.setAdresse("NY");
         this.insertInDB(entity);
     }
 }
