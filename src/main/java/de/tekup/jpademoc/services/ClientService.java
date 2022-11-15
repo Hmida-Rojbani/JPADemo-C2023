@@ -35,11 +35,15 @@ public class ClientService {
         return client;
     }
 
-    @PostConstruct
+    public void deleteClient(int id){
+        clientRepository.deleteById(id);
+    }
+
+    //@PostConstruct
     public void init(){
         ClientEntity entity = new ClientEntity();
         entity.setNom("Doe");
-        entity.setCin(160515264);
+        entity.setCin("12345678");
         entity.setPrenom("John");
         entity.setAdresse("NY");
         this.insertInDB(entity);

@@ -20,37 +20,35 @@
 			<div class="container">
 				<div class="row no-gutters">
                   <div class="col-md-6 wrap-about ftco-animate">
-                    <div th:if="${#lists.isEmpty(clients)}" class="heading-section heading-section-black pl-md-5">
-                      <h3>No Clients to display</h3>
-                    </div>
-	          <div th:unless="${#lists.isEmpty(clients)}" class="heading-section heading-section-black pl-md-5">
-	          	<span class="subheading">Clients display list</span>
-                <table class="table table-hover">
-                  <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">CIN</th>
-                    <th scope="col">NOM</th>
-                    <th scope="col">PRENOM</th>
-                    <th scope="col">ADRESSE</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr th:each="client : ${clients}">
-                    <th scope="row" th:text="${client.id}">1</th>
-                    <td th:text="${client.cin}">Mark</td>
-                    <td th:text="${client.nom}">Otto</td>
-                    <td th:text="${client.prenom}">Otto</td>
-                    <td th:text="${client.adresse}">@mdo</td>
-                    <td ><a th:href="@{'/clients/ui/delete/'+${client.id}}"><i class="ion-ios-trash"></i></a></td>
-                    <td ><a th:href="@{'/clients/ui/update/'+${client.id}}"><i class="ion-ios-create"></i></a></td>
-                  </tr>
+	          <div class="heading-section heading-section-black pl-md-5">
+	          	<span class="subheading">Clients Add Form</span>
 
-                  </tbody>
-                </table>
 	          </div>
+					</div>
+				</div>
+              <div class="row no-gutters">
+                  <div class="col-md-6 offset-md-3 wrap-about ftco-animate">
+                    <form action="/clients/ui/add" method="post" class="bg-light p-5 contact-form" th:object="${client}">
+                      <input type="text" class="form-control" placeholder="id" th:field="*{id}" hidden>
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="CIN" th:field="*{cin}" required>
+                        <small class="text-danger" th:if="${#fields.hasErrors('cin')}"th:errors="*{cin}"></small>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="NOM" th:field="*{nom}" required>
+                        <small class="text-danger" th:if="${#fields.hasErrors('nom')}"th:errors="*{nom}"></small>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="PRENOM" th:field="*{prenom}" required>
+                        <small class="text-danger" th:if="${#fields.hasErrors('prenom')}"th:errors="*{prenom}"></small>
+                      </div>
+                      <div class="form-group">
+                        <textarea name="" id="" cols="30" rows="3" class="form-control" placeholder="ADRESSE" th:field="*{adresse}"></textarea>
+                      </div>
+                      <div class="form-group text-center">
+                        <input type="submit" value="Add Client" class="btn btn-primary py-3 px-5 ">
+                      </div>
+                    </form>
 					</div>
 				</div>
 			</div>
