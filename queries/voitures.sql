@@ -1,0 +1,12 @@
+INSERT INTO loc_db_c.voiture_entity (id, date_de_mise_en_marche, model, serie, image_path, prix_de_jour, vendor) VALUES (1, '2021-11-05', 'Grand Sedan', '226Tu1020', '/images/car-1.jpg', 250, 'Cheverolet');
+INSERT INTO loc_db_c.voiture_entity (id, date_de_mise_en_marche, model, serie, image_path, prix_de_jour, vendor) VALUES (2, '2021-05-13', 'Land Rover', '223TU257', '/images/car-2.jpg', 300, 'Range Rover');
+INSERT INTO loc_db_c.voiture_entity (id, date_de_mise_en_marche, model, serie, image_path, prix_de_jour, vendor) VALUES (3, '2018-07-06', '720S', '216TU963', '/images/car-3.jpg', 450, 'McLaren');
+INSERT INTO loc_db_c.voiture_entity (id, date_de_mise_en_marche, model, serie, image_path, prix_de_jour, vendor) VALUES (4, '2020-09-23', 'Mustang GT 5.0', '220TU22', '/images/car-4.jpg', 280, 'Ford');
+INSERT INTO loc_db_c.voiture_entity (id, date_de_mise_en_marche, model, serie, image_path, prix_de_jour, vendor) VALUES (5, '2021-11-05', 'Grand Sedan', '226Tu1020', '/images/car-1.jpg', 250, 'Cheverolet');
+INSERT INTO loc_db_c.voiture_entity (id, date_de_mise_en_marche, model, serie, image_path, prix_de_jour, vendor) VALUES (6, '2021-05-13', 'Land Rover', '223TU257', '/images/car-2.jpg', 300, 'Range Rover');
+INSERT INTO loc_db_c.voiture_entity (id, date_de_mise_en_marche, model, serie, image_path, prix_de_jour, vendor) VALUES (7, '2018-07-06', '720S', '216TU963', '/images/car-3.jpg', 450, 'McLaren');
+INSERT INTO loc_db_c.voiture_entity (id, date_de_mise_en_marche, model, serie, image_path, prix_de_jour, vendor) VALUES (8, '2020-09-23', 'Mustang GT 5.0', '220TU22', '/images/car-4.jpg', 280, 'Ford');
+INSERT INTO loc_db_c.voiture_entity (id, date_de_mise_en_marche, model, serie, image_path, prix_de_jour, vendor) VALUES (9, '2021-11-05', 'Grand Sedan', '226Tu1020', '/images/car-1.jpg', 250, 'Cheverolet');
+INSERT INTO loc_db_c.voiture_entity (id, date_de_mise_en_marche, model, serie, image_path, prix_de_jour, vendor) VALUES (10, '2021-05-13', 'Land Rover', '223TU257', '/images/car-2.jpg', 300, 'Range Rover');
+INSERT INTO loc_db_c.voiture_entity (id, date_de_mise_en_marche, model, serie, image_path, prix_de_jour, vendor) VALUES (11, '2018-07-06', '720S', '216TU963', '/images/car-3.jpg', 450, 'McLaren');
+INSERT INTO loc_db_c.voiture_entity (id, date_de_mise_en_marche, model, serie, image_path, prix_de_jour, vendor) VALUES (12, '2020-09-23', 'Mustang GT 5.0', '220TU22', '/images/car-4.jpg', 280, 'Ford');

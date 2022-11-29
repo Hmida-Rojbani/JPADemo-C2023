@@ -17,6 +17,10 @@ public class VoitureEntity {
     private LocalDate dateDeMiseEnMarche;
     private String model;
 
+    private String vendor;
+    private double prixDeJour;
+    private String imagePath;
+
     @OneToMany(mappedBy = "voiture")
     private List<Location> locations;
 
