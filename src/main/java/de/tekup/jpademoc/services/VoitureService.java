@@ -39,5 +39,7 @@ public class VoitureService {
         return voitureRepository.locateByInterval(dateDebut,dateFin);
     }
 
-
+    public Page<VoitureEntity> getByPage(Pageable pageable){
+        return voitureRepository.findAll(pageable);
+    }
 }

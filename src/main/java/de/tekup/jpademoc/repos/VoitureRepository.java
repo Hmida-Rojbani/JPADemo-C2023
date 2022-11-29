@@ -4,12 +4,13 @@ import de.tekup.jpademoc.entites.VoitureEntity;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public interface VoitureRepository extends CrudRepository<VoitureEntity,Integer> {
+public interface VoitureRepository extends PagingAndSortingRepository<VoitureEntity,Integer> {
     List<VoitureEntity> findByModel(String model);
 
     /*@Query(nativeQuery = true,

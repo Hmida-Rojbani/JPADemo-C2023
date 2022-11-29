@@ -21,7 +21,7 @@
 		<section class="ftco-section bg-light">
     	<div class="container">
     		<div class="row">
-    			<div class="col-md-4" th:each="car : ${cars}">
+    			<div class="col-md-4" th:each="car : ${voiturePage.content}">
     				<div class="car-wrap rounded ftco-animate">
     					<div class="img rounded d-flex align-items-end" th:style="'background-image: url('+${car.imagePath}+');'">
     					</div>
@@ -38,21 +38,21 @@
 
 
     		</div>
-    		<div class="row mt-5">
-          <div class="col text-center">
-            <div class="block-27">
-              <ul>
-                <li><a href="#">&lt;</a></li>
-                <li class="active"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&gt;</a></li>
-              </ul>
-            </div>
-          </div>
         </div>
+            <div class="row mt-5" th:if="${voiturePage.totalPages > 0}">
+                <div class="col text-center">
+                    <div class="block-27">
+                        <ul>
+                            <li th:hidden="${voiturePage.number==0}"><a th:href="@{/voitures/ui/(size=${voiturePage.size}, page=${voiturePage.number})}" >&lt;</a></li>
+                            <li th:each="pageNumber : ${pageNumbers}"
+                                th:class="${pageNumber==voiturePage.number + 1} ? active"> <a th:href="@{/voitures/ui/(size=${voiturePage.size}, page=${pageNumber})}"
+                                                                                              th:text="${pageNumber}"></a></li>
+                            <li th:hidden="${voiturePage.totalPages==voiturePage.number+1}"><a th:href="@{/voitures/ui/(size=${voiturePage.size}, page=${voiturePage.number + 2})}">&gt;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
     	</div>
     </section>
     
