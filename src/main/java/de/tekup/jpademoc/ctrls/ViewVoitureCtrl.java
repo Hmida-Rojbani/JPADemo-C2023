@@ -1,5 +1,7 @@
 package de.tekup.jpademoc.ctrls;
 
+import de.tekup.jpademoc.config.FileUploadUtil;
+import de.tekup.jpademoc.entites.ClientEntity;
 import de.tekup.jpademoc.entites.VoitureEntity;
 import de.tekup.jpademoc.services.VoitureService;
 import lombok.AllArgsConstructor;
@@ -7,10 +9,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -44,5 +48,33 @@ public class ViewVoitureCtrl {
         }
 
         return "car";
+    }
+
+    @GetMapping("/add")
+    public String addVoitures(Model model){
+        model.addAttribute("voiture",new VoitureEntity());
+        return "car-add";
+    }
+
+    @PostMapping("/add")
+    public String addClientsPost(@Valid @ModelAttribute("voiture") VoitureEntity voiture,
+                                 BindingResult result
+                                , @RequestParam("fileImg")MultipartFile multipartFile){
+
+        if (result.hasErrors()){
+            return "car-add";
+        }
+        voitureService.addVoiture(voiture);
+        if(!multipartFile.isEmpty()){
+            String orgFileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            String ext = orgFileName.substring(orgFileName.lastIndexOf("."));
+            String uploadDir = "voitures-photos/";
+            String fileName = "voiture-"+voiture.getId()+ext;
+            FileUploadUtil.saveFile(uploadDir,fileName,multipartFile);
+            voiture.setImagePath("/"+uploadDir+fileName);
+            voitureService.addVoiture(voiture);
+        }
+
+        return "redirect:/voitures/ui/";
     }
 }
