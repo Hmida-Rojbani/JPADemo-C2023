@@ -15,7 +15,7 @@ import java.util.List;
 @Table(name = "CLIENT")
 @Data
 @JsonIdentityInfo(property = "id", generator = ObjectIdGenerators.IntSequenceGenerator.class)
-public class ClientEntity {
+public class ClientEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

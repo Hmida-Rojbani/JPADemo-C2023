@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head th:fragment="headcontent">
     <title>Carbook</title>
     <meta charset="utf-8">
@@ -29,7 +30,7 @@
 <body>
 <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Car<span>Book</span></a>
+        <a class="navbar-brand" href="/">Car<span>Book</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
@@ -38,27 +39,42 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li sec:authorize="hasRole('ADMIN')" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownClient" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Clients
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/clients/ui/display">Display</a>
                         <a class="dropdown-item" href="/clients/ui/add">Add</a>
-                        <a class="dropdown-item" href="/clients/ui/display">Display all</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownVoitures" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownVoiture" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Cars
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/clients/ui/add">Add</a>
-                        <a class="dropdown-item" href="/clients/ui/">Display all</a>
+                        <a sec:authorize="hasRole('USER') || hasRole('ADMIN')" class="dropdown-item" href="/voitures/ui/?page=1&size=6">Display</a>
+                        <a sec:authorize="hasRole('ADMIN')" class="dropdown-item" href="/voitures/ui/add">Add</a>
                     </div>
                 </li>
-                <li class="nav-item"><a href="blog.html" class="nav-link">Rents</a></li>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                <!--                <li class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></li>-->
+                <li sec:authorize="hasRole('USER')" class="nav-item"><a href="/rent" class="nav-link">Rents</a></li>
+                <li sec:authorize="isAnonymous()"  class="nav-item"><a href="/signup" class="nav-link">Sign UP</a></li>
+                <li sec:authorize="isAnonymous()"  class="nav-item"><a href="/login" class="nav-link">Sign IN</a></li>
+                <li sec:authorize="isAuthenticated()"  class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLogout" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        [[${#httpServletRequest.remoteUser}]]
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" onclick="document.forms['logoutForm'].submit()">Logout</a>
+                    </div>
+                </li>
+
             </ul>
+            <form id="logoutForm" method="POST" th:action="@{/logout}">
+                <input type="hidden" name="${_csrf.parameterName}"
+                       value="${_csrf.token}" />
+            </form>
         </div>
     </div>
 </nav>
