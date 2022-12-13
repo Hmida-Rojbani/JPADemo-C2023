@@ -10,30 +10,27 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/api")
 @AllArgsConstructor
 public class VoitureCtrl {
 
     private VoitureService voitureService;
     @PostMapping("/voitures/save")
-    @ResponseBody
     public VoitureEntity saveVoiture(@RequestBody VoitureEntity voiture){
         return voitureService.addVoiture(voiture);
     }
     @GetMapping("/voitures")
-    @ResponseBody
     public List<VoitureEntity> getAllVoitures(){
         return voitureService.getAllVoiture();
     }
 
     @GetMapping("/voitures/{id}")
-    @ResponseBody
     public VoitureEntity getVoitureById(@PathVariable("id") int voitureId){
         return voitureService.getVoitureById(voitureId);
     }
 
     @GetMapping("/voitures/model/{model}")
-    @ResponseBody
     public List<VoitureEntity> getVoitureByModel(@PathVariable("model") String model){
         return voitureService.getAllByModel(model);
     }
